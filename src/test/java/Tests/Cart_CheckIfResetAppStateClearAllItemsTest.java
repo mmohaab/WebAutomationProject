@@ -9,10 +9,12 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 
 public class Cart_CheckIfResetAppStateClearAllItemsTest extends BaseTest{
+    protected CartPage cartPage;
+    protected String randomItems;
     @Test(description = "Verify deleting all items in cart after resetting app state")
     public void checkIfResetAppStateClearAllItems() throws IOException {
-        CartPage cartPage;
-        String randomItems = Utility.readFromProperty("environment", "NumberOfRandomItems");
+        randomItems = Utility.readFromProperty("environment", "NumberOfRandomItems");
+
         InventoryPage inventoryPage = Utility.goToInventory(driver);
         inventoryPage.addRandomItemsToCart(Integer.parseInt(randomItems));
         cartPage = inventoryPage.goToCartPage();

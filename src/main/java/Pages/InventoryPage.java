@@ -10,24 +10,24 @@ import java.util.List;
 
 public class InventoryPage extends BasePage{
     private String link;
-    public InventoryPage(WebDriver driver) {
-        super(driver);
-    }
-
     private List<WebElement> numberOfItemsOnPage = driver.findElements(By.cssSelector("[data-test=\"inventory-item\"]"));
     private List<WebElement> addToCartButtonForAllItems = driver.findElements(By.className("btn_inventory"));
     private List<WebElement> selectedItems;
     private WebElement itemButton;
     private WebElement cartIcon = driver.findElement(By.cssSelector("[data-test=\"shopping-cart-link\"]"));
     private WebElement CartIconBadgeNumber;
-
-    public void setLink(String link) {
-        this.link = link;
+    public InventoryPage(WebDriver driver) {
+        super(driver);
     }
 
     public String getLink() {
         return link;
     }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
     @Step
     public List<WebElement> getAddToCartButtonForAllItems() {
         return addToCartButtonForAllItems;
@@ -61,12 +61,13 @@ public class InventoryPage extends BasePage{
         return numberOnCartBadge().equals(numberOfSelectedItems());
     }
     @Step
-    public void addRandomItemsToCart(int WantedItemsNumber){
+    public InventoryPage addRandomItemsToCart(int WantedItemsNumber){
         var items = Utility.generateRandomNumbers(numberOfItemsOnPage.size(),WantedItemsNumber);
         for(var item:items){
             itemButton = driver.findElement(By.xpath("(//button[contains(@class, 'btn_inventory')])["+item+"]"));
             itemButton.click();
         }
+        return this;
     }
     @Step
     public CartPage goToCartPage(){

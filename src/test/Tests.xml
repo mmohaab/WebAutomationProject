@@ -1,5 +1,6 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 <suite name="Parallel Testing Suite">
+
     <test name="Login Page Tests" parallel="classes">
         <classes>
             <class name="Tests.Login_ValidLoginTest" />
@@ -7,16 +8,40 @@
             <class name="Tests.Login_InvalidLoginWithBlockedAccountTest" />
         </classes>
     </test>
+
     <test name="Inventory Page Tests" parallel="classes">
         <classes>
             <class name="Tests.Inventory_AddingAllItemsToCartTest" />
             <class name="Tests.Inventory_AddingRandomItemsToCartTest" />
         </classes>
     </test>
+
     <test name="Cart Page Tests" parallel="classes">
         <classes>
             <class name="Tests.Cart_CheckIfItemsOnCartEqualsRandomNumber" />
             <class name="Tests.Cart_CheckIfResetAppStateClearAllItemsTest" />
         </classes>
     </test>
+
+    <test name="Checkout Page Tests" parallel="classes">
+        <classes>
+            <class name="Tests.Checkout_InvalidBlankFields" />
+            <class name="Tests.Checkout_InvalidFieldsUsingSpacesOnly" />
+            <class name="Tests.Checkout_ValidCheckoutData" />
+        </classes>
+    </test>
+
+    <test name="Overview Page Tests" parallel="classes">
+        <classes>
+            <class name="Tests.Overview_CheckTotalInEmptyCart" />
+            <class name="Tests.Overview_CheckTotalWithRandomItems" />
+        </classes>
+    </test>
+
+    <test name="E2E Test" parallel="classes">
+        <classes>
+            <class name="Tests.E2ETest" />
+        </classes>
+    </test>
+
 </suite>
